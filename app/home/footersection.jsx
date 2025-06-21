@@ -1,0 +1,219 @@
+'use client'
+import { useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import Script from 'next/script';
+import { FaTwitter, FaFacebook, FaInstagram, FaChevronRight, FaMapMarker, FaPhone, FaEnvelope, FaHeart } from 'react-icons/fa';
+
+const Footer = () => {
+  useEffect(() => {
+    // Initialize Google Translate after component mounts
+    if (window.google && window.google.translate) {
+      new window.google.translate.TranslateElement(
+        { pageLanguage: 'en' },
+        'google_translate_element'
+      );
+    }
+
+    // Function to be called by Google Translate script
+    window.googleTranslateElementInit = () => {
+      new window.google.translate.TranslateElement(
+        { pageLanguage: 'en' },
+        'google_translate_element'
+      );
+    };
+  }, []);
+
+  return (
+    <>
+      {/* Google Translate Script */}
+      <Script
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+        strategy="afterInteractive"
+      />
+
+      <footer className="ftco-footer pt-10 bg-black">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            {/* Company Info */}
+            <div className="col-span-1">
+              <div className="ftco-footer-widget">
+                <h2 className="ftco-heading-2 logo flex items-center">
+                  <Link href="/" className="flex items-center">
+                    <Image
+                      src="/assets/images/products/logo.jpg"
+                      width={50}
+                      height={50}
+                      alt="JSK Enterprises Logo"
+                      className="logo-img mr-3"
+                    />
+                    <span className="flex flex-col">
+                      <span className="font-bold text-xl" style={{ fontFamily: "'Big Shoulders Stencil Text', cursive" }}>
+                        JSK Enterprises
+                      </span>
+                      <span
+                        className="text-sm lowercase"
+                        style={{
+                          fontFamily: "'Dancing Script', cursive",
+                          marginTop: '-0.75rem',
+                          marginLeft: '4.375rem'
+                        }}
+                      >
+                        Tower Crane Spare Parts
+                      </span>
+                    </span>
+                  </Link>
+                </h2>
+                <p className="mt-2 text-gray-400">A technology for mankind</p>
+                <p className="text-gray-400">An ISO 9001:2015 Certified Company</p>
+
+                <div className="flex space-x-4 mt-4">
+                  <a href="#" className="text-gray-400 hover:text-blue-500 transition-colors">
+                    <FaTwitter size={20} />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61564114631251&mibextid=ZbWKwL"
+                    className="text-gray-400 hover:text-blue-500 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaFacebook size={20} />
+                  </a>
+                  <a href="#" className="text-gray-400 hover:text-pink-500 transition-colors">
+                    <FaInstagram size={20} />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="col-span-1">
+              <div className="ftco-footer-widget">
+                <h2 className="ftco-heading-2 text-xl font-bold mb-4 text-white">Links</h2>
+                <ul className="space-y-2">
+                  {[
+                    { href: "/", text: "Home" },
+                    { href: "/about", text: "About Us" },
+                    { href: "/products-services", text: "Products & Services" },
+                    { href: "/corporate-video", text: "Corporate Video" },
+                    { href: "/gallery", text: "Gallery" },
+                    { href: "/contact", text: "Contact Us" }
+                  ].map((link, index) => (
+                    <li key={index}>
+                      <Link
+                        href={link.href}
+                        className="flex items-center text-gray-400 hover:text-blue-500 transition-colors"
+                      >
+                        <FaChevronRight className="mr-2 text-xs" />
+                        {link.text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Products */}
+            <div className="col-span-1">
+              <div className="ftco-footer-widget">
+                <h2 className="ftco-heading-2 text-xl font-bold mb-4 text-white">Products</h2>
+                <ul className="space-y-2">
+                  {[
+                    { href: "/assets/images/products/bar_bending_machine.jpg", text: "Bar Bending Machine" },
+                    { href: "/assets/images/products/bar_cutting_machine.jpg", text: "Bar Cutting Machine" },
+                    { href: "/assets/images/products/brake_coil.jpg", text: "Brake Coil" },
+                    { href: "/assets/images/products/pinion_roller.jpg", text: "Pinion Roller" },
+                    { href: "/assets/images/products/limit_switch.jpg", text: "Limit Switches" },
+                    { href: "/assets/images/products/concrete_bucket.jpg", text: "Concrete Buckets" },
+                    { href: "/assets/images/products/push_button.jpg", text: "Push Button" },
+                    { href: "/assets/images/products/platform-trolley.jpg", text: "Spare Parts of Tower Crane" }
+                  ].map((product, index) => (
+                    <li key={index}>
+                      <Link
+                        href={product.href}
+                        className="flex items-center text-gray-400 hover:text-blue-500 transition-colors"
+                      >
+                        <FaChevronRight className="mr-2 text-xs" />
+                        {product.text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div className="col-span-1">
+              <div className="ftco-footer-widget">
+                <h2 className="ftco-heading-2 text-xl font-bold mb-4 text-white">Have a Questions?</h2>
+                <div className="space-y-3">
+                  <div className="flex items-start">
+                    <FaMapMarker className="mt-1 mr-3 text-gray-400 flex-shrink-0" />
+                    <span className="text-gray-400">
+                      Plot No. 80, Block C, Sector-3, Greater Noida, Gautam Budh Nagar, Uttar Pradesh (India)
+                    </span>
+                  </div>
+                  <div className="flex items-center">
+                    <FaPhone className="mr-3 text-gray-400" />
+                    <a href="tel:+918920377345" className="text-gray-400 hover:text-blue-500 transition-colors">
+                      +91-8920377345
+                    </a>
+                  </div>
+                  <div className="text-gray-400">
+                    GSTIN: 09BWNPN6295E1ZW
+                  </div>
+                  <div className="flex items-center">
+                    <FaEnvelope className="mr-3 text-gray-400" />
+                    <a href="mailto:sales@towercranespare.com" className="text-gray-400 hover:text-blue-500 transition-colors">
+                      sales@towercranespare.com
+                    </a>
+                  </div>
+                  <div className="flex items-center">
+                    <FaEnvelope className="mr-3 text-gray-400" />
+                    <a href="mailto:ns05deepu@gmail.com" className="text-gray-400 hover:text-blue-500 transition-colors">
+                      ns05deepu@gmail.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Copyright Section */}
+        <div className="bg-gray-950 mt-8 px-20">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="text-center md:text-left mb-4 md:mb-0">
+                <p className="text-white">
+                  Copyright &copy; {new Date().getFullYear()} Design & Developed{' '}
+                  <FaHeart className="inline text-red-300" /> by{' '}
+                  <a
+                    href="https://ayanshtech.in/"
+                    className="text-white hover:text-yellow-200 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Ayanshtech
+                  </a>
+                  <br />
+                  <FaPhone className="inline mr-1" />{' '}
+                  <a href="tel:+917532046950" className="text-white hover:text-yellow-200 transition-colors">
+                    +91-7532046950
+                  </a>
+                </p>
+              </div>
+              <div className="text-center md:text-right">
+                {/* Google Translate Widget */}
+                <div id="google_translate_element" className="inline-block"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+};
+
+export default Footer;
