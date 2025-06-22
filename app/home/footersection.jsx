@@ -119,14 +119,14 @@ const Footer = () => {
                 <h2 className="ftco-heading-2 text-xl font-bold mb-4 text-white">Products</h2>
                 <ul className="space-y-2">
                   {[
-                    { href: "/assets/images/products/bar_bending_machine.jpg", text: "Bar Bending Machine" },
-                    { href: "/assets/images/products/bar_cutting_machine.jpg", text: "Bar Cutting Machine" },
-                    { href: "/assets/images/products/brake_coil.jpg", text: "Brake Coil" },
-                    { href: "/assets/images/products/pinion_roller.jpg", text: "Pinion Roller" },
-                    { href: "/assets/images/products/limit_switch.jpg", text: "Limit Switches" },
-                    { href: "/assets/images/products/concrete_bucket.jpg", text: "Concrete Buckets" },
-                    { href: "/assets/images/products/push_button.jpg", text: "Push Button" },
-                    { href: "/assets/images/products/platform-trolley.jpg", text: "Spare Parts of Tower Crane" }
+                    { href: "/images/products/bar_bending_machine.jpg", text: "Bar Bending Machine" },
+                    { href: "/images/products/bar_cutting_machine.jpg", text: "Bar Cutting Machine" },
+                    { href: "/images/products/brake_coil.jpg", text: "Brake Coil" },
+                    { href: "/images/products/pinion_roller.jpg", text: "Pinion Roller" },
+                    { href: "/images/products/limit_switch.jpg", text: "Limit Switches" },
+                    { href: "/images/products/concrete_bucket.jpg", text: "Concrete Buckets" },
+                    { href: "/images/products/push_button.jpg", text: "Push Button" },
+                    { href: "/images/products/platform-trolley.jpg", text: "Spare Parts of Tower Crane" }
                   ].map((product, index) => (
                     <li key={index}>
                       <Link
