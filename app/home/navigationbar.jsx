@@ -2,18 +2,15 @@
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { PhoneOutlined, MailOutlined, MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Modal } from 'antd';
-import { motion } from 'framer-motion';
-
+import HeaderSection from './headersection';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showQuoteForm, setShowQuoteForm] = useState(false);
   const [form] = Form.useForm();
   const pathname = usePathname();
-
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -29,99 +26,35 @@ const Navigation = () => {
     setShowQuoteForm(false);
   };
 
-
   const getNavClass = (path) =>
-    `nav-link px-4 py-2 rounded-md transition-all duration-300 font-medium ${pathname === path ? 'bg-yellow-500 text-gray-900' : 'text-white hover:bg-blue-700'
+    `nav-link px-4 py-2 rounded-md transition-all duration-300 font-medium ${pathname === path
+      ? 'bg-yellow-500 text-gray-900'
+      : 'text-white hover:bg-blue-700'
     }`;
-
 
   return (
     <>
-      {/* Top Bar - Enhanced with gradient and better spacing */}
-      <div className="py-3 bg-white text-gray-800 shadow-md border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center gap-6 md:flex-row md:justify-center md:gap-12">
-            {/* Logo Section with Framer Motion */}
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center hover:opacity-90 transition-opacity">
-                <motion.div
-                  initial={{ scale: 1 }}
-                  animate={{ scale: [1, 1.3, 1] }}
-                  transition={{
-                    duration: 3,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatType: "loop"
-                  }}
-                  className="mr-3 relative w-[80px] h-[80px]"
-                >
-                  <Image
-                    src="/img/logo.jpg"
-                    className="object-contain"
-                    fill
-                    priority
-                    sizes="70px"
-                    alt="JSR engineeringsolution Logo"
-                  />
-                </motion.div>
-                <span className="font-bold text-xl text-center">
-                  <span className="text-blue-600">JSR</span> jsrengineeringsolution
-                  <small className="block font-normal text-blue-500 text-sm">
-                    Tower Crane Spare Parts Solutions
-                  </small>
-                </span>
-              </Link>
-            </div>
+      <HeaderSection />
 
-
-            {/* Vertical Divider - Visible only on desktop */}
-            <div className="hidden md:block h-12 w-px bg-gray-300"></div>
-
-            {/* Contact Info */}
-            <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
-              <div className="flex items-center">
-                <div className="icon flex justify-center items-center mr-3 bg-gray-100 p-2 rounded-full">
-                  <PhoneOutlined className="text-blue-600" />
-                </div>
-                <div className="text-center sm:text-left">
-                  <p className="text-sm font-semibold">Call Us 24/7</p>
-                  <p className="text-blue-600 font-medium">+91 8920377345</p>
-                </div>
-              </div>
-
-              {/* Vertical Divider - Visible only on tablet+ */}
-              <div className="hidden sm:block h-10 w-px bg-gray-300"></div>
-
-              <div className="flex items-center">
-                <div className="icon flex justify-center items-center mr-3 bg-gray-100 p-2 rounded-full">
-                  <MailOutlined className="text-blue-600" />
-                </div>
-                <div className="text-center sm:text-left">
-                  <p className="text-sm font-semibold">Office Address</p>
-                  <p className="text-gray-600 text-xs">Plot No. 80, Block C, Sector-3, Greater Noida</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navigation - Sticky and with hover effects */}
+      {/* Main Navigation */}
       <nav className="sticky top-0 z-40 bg-cyan-900 shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between py-3 gap-4">
-            {/* Mobile menu button - centered */}
-            <div className="w-full md:hidden flex justify-center">
+            {/* Mobile menu button - Now on left side */}
+            <div className="w-full md:hidden flex justify-start">
               <Button
                 type="text"
-                icon={<MenuOutlined className="text-white" />}
+                icon={<MenuOutlined style={{ color: 'white' }} />}
                 onClick={toggleMenu}
+                className="!flex items-center"
               >
                 <span className="text-white ml-2">Menu</span>
               </Button>
+
             </div>
 
-            {/* Desktop Navigation - centered with gap */}
+
+            {/* Desktop Navigation */}
             <div className="hidden w-full md:flex items-center justify-center gap-4">
               <div className="flex flex-wrap justify-center gap-2">
                 <Link href="/" className={getNavClass('/')}>
@@ -155,46 +88,68 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Mobile Navigation - centered */}
+          {/* Mobile Navigation - Now slides from left */}
           {isMenuOpen && (
-            <div className="md:hidden bg-gray-800 rounded-lg p-4 mt-2 shadow-xl">
-              <div className="flex flex-col items-center space-y-2">
-                <Link href="/" className={getNavClass('/')} onClick={toggleMenu}>
-                  Home
-                </Link>
-                <Link href="/about" className={getNavClass('/about')} onClick={toggleMenu}>
-                  About Us
-                </Link>
-                <Link href="/services" className={getNavClass('/services')} onClick={toggleMenu}>
-                  Products & Service
-                </Link>
-                <Link href="/corporatevideo" className={getNavClass('/corporatevideo')} onClick={toggleMenu}>
-                  Corporate Video
-                </Link>
-                <Link href="/gallery" className={getNavClass('/gallery')} onClick={toggleMenu}>
-                  Gallery
-                </Link>
-                <Link href="/contact" className={getNavClass('/contact')} onClick={toggleMenu}>
-                  Contact
-                </Link>
-                <Button
-                  type="primary"
-                  className="w-full max-w-xs bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold mt-2"
-                  onClick={() => {
-                    toggleMenu();
-                    toggleQuoteForm();
-                  }}
-                >
-                  Request A Quote
-                </Button>
+            <div className="md:hidden fixed inset-0 z-50">
+              {/* Overlay */}
+              <div
+                className="absolute inset-0 bg-black bg-opacity-50"
+                onClick={toggleMenu}
+              ></div>
+
+              {/* Menu Panel */}
+              <div className="absolute left-0 top-0 h-full w-3/4 max-w-xs bg-gray-800 shadow-lg">
+                <div className="flex flex-col p-4 h-full">
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-white text-xl font-bold">Menu</h2>
+                    <button
+                      onClick={toggleMenu}
+                      className="text-white text-2xl"
+                    >
+                      ×
+                    </button>
+                  </div>
+
+                  <div className="flex flex-col space-y-3 flex-grow">
+                    <Link href="/" className={getNavClass('/')} onClick={toggleMenu}>
+                      Home
+                    </Link>
+                    <Link href="/about" className={getNavClass('/about')} onClick={toggleMenu}>
+                      About Us
+                    </Link>
+                    <Link href="/services" className={getNavClass('/services')} onClick={toggleMenu}>
+                      Products & Service
+                    </Link>
+                    <Link href="/corporatevideo" className={getNavClass('/corporatevideo')} onClick={toggleMenu}>
+                      Corporate Video
+                    </Link>
+                    <Link href="/gallery" className={getNavClass('/gallery')} onClick={toggleMenu}>
+                      Gallery
+                    </Link>
+                    <Link href="/contact" className={getNavClass('/contact')} onClick={toggleMenu}>
+                      Contact
+                    </Link>
+                  </div>
+
+                  <Button
+                    type="primary"
+                    className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold mt-auto"
+                    onClick={() => {
+                      toggleMenu();
+                      toggleQuoteForm();
+                    }}
+                    block
+                  >
+                    Request A Quote
+                  </Button>
+                </div>
               </div>
             </div>
           )}
         </div>
       </nav>
 
-
-      {/* Quote Form Modal using Ant Design */}
+      {/* Quote Form Modal */}
       <Modal
         title="Want an expert to call you?"
         open={showQuoteForm}

@@ -1,13 +1,15 @@
 'use client'
-import { useState, useEffect, useRef } from 'react';
-import Head from 'next/head';
+import { useEffect, useRef } from 'react';
 import { Button } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Image from 'next/image';
-import Marquee from 'react-fast-marquee';
+import ClientsPage from './clients';
+import HomeBannerPage from './hombannerpage';
+import ProductRotator from './ProductRotator';
+
 
 
 const AnimatedCounter = ({ target, duration = 2000 }) => {
@@ -33,12 +35,22 @@ const AnimatedCounter = ({ target, duration = 2000 }) => {
     return <span ref={countRef}>0+</span>;
 };
 
-
 export default function Index() {
-    const [currentProduct, setCurrentProduct] = useState('SOLAR WARNING LAMP');
-    const [isFormVisible, setIsFormVisible] = useState(false);
 
-    const products = [
+    const stats = [
+        { value: 2, label: 'Years of Experience' },
+        { value: 150, label: 'Customers Served' },
+        { value: 550, label: 'Number of Equipment' },
+        { value: 10, label: 'Number of Staffs' }
+    ];
+
+    const images = [
+        '/img/bar_cutting_machine.jpg',
+        '/img/solar_warning_light.jpg',
+    ];
+
+
+    const homeProducts = [
         'SOLAR WARNING LAMP',
         'TRANSFORMAR',
         'HIGH TENSILE MAST BOLT',
@@ -56,88 +68,25 @@ export default function Index() {
         'REED SENSOR'
     ];
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const currentIndex = products.indexOf(currentProduct);
-            const nextIndex = (currentIndex + 1) % products.length;
-            setCurrentProduct(products[nextIndex]);
-        }, 3000);
-
-        return () => clearInterval(interval);
-    }, [currentProduct]);
-
-    const toggleForm = () => {
-        setIsFormVisible(!isFormVisible);
-    };
-
-    const stats = [
-        { value: 2, label: 'Years of Experience' },
-        { value: 150, label: 'Customers Served' },
-        { value: 550, label: 'Number of Equipment' },
-        { value: 10, label: 'Number of Staffs' }
-    ];
-
-    const images = [
-        '/img/bar_cutting_machine.jpg',
-        '/img/solar_warning_light.jpg',
-    ];
-
-    const clients = [
-        "modernindiaconstruction.jpg",
-        "bhutani.png",
-        "antriksh.png",
-        "bansalgroup.png",
-        "vskinfa.html",
-        "ats.png",
-        "acecity-logo.png",
-        "ctc.png",
-        "capacite.png",
-    ];
-
-
-
     return (
         <div className="min-h-screen">
-            <Head>
-                <title>Tower Lift Spare Parts, JSK Enterprises</title>
-                <meta name="description" content="JSK Enterprises is India Leading material handling equipments manufacturing, Conveyors Manufacturer, Conveyors Manufacturers in all over India." />
-                <meta name="keywords" content="AK Handling Equipments, AK Enterprises, best lifting equipments manufecturer company, AK Handling Equipments, Conveyors Manufacturer India, Material Handling Equipment Manufacturers In India, scissor lift manufecturer in faridabad" />
-                <meta name="author" content="www.towercranespare.com" />
-            </Head>
-
-            {/* Hero Section */}
-            <section
-                className="relative h-screen flex items-center justify-center bg-cover bg-center"
-                style={{ backgroundImage: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/img/wall1.jpg')" }}
-            >
-                <div className="container mx-auto px-4 text-center text-white">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6 text-shadow-lg">
-                        WE ARE MANUFACTURER & TRADER OF <br />
-                        <span className="text-yellow-400 animate-pulse">{currentProduct}</span>
-                    </h1>
-                    <p className="text-xl mb-8 text-shadow">
-                        We are a leading manufacturer & traders of broad range of Tower Crane Spare Parts and safety devices for Industrial Material Handling Equipments
-                    </p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <a href="tel:+918920377345" className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded transition duration-300">
-                            Arrange a Call
-                        </a>
-                        <button
-                            onClick={toggleForm}
-                            className="bg-white hover:bg-gray-200 text-black font-bold py-3 px-6 rounded transition duration-300"
-                        >
-                            Request a Quote
-                        </button>
-                    </div>
-                </div>
-            </section>
-
+            <HomeBannerPage
+                bgImage="/images/wall1.jpg"
+                title={
+                    <>
+                        WE ARE MANUFECTURER & TRADER OF <br />
+                        <ProductRotator products={homeProducts} />
+                    </>
+                }
+                description="We are a leading manufecturer & traders of broad range of Tower Crane Spare Parts and safety devices for Industrial Material Handling Equipments"
+                showProducts={false}
+            />
             {/* Why Choose Us Section */}
             <section className="pt-14 bg-orange-400 text-white">
                 <div className="md:px-28 px-4">
                     <div className="flex flex-col lg:flex-row">
                         <div className="lg:w-7/12 lg:pr-10 lg:mb-0">
-                            <h2 className="text-3xl font-bold mb-8">Why Choose JSK Enterprises</h2>
+                            <h2 className="text-3xl font-bold mb-8">Why Choose JSR Engineering Solution</h2>
 
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="flex items-start">
@@ -192,7 +141,7 @@ export default function Index() {
                         </div>
 
                         <div className="lg:w-4/12 relative">
-                            <div className="relative z-20 -mt-20 overflow-hidden">
+                            <div className="relative z-20 mt-5 md:-mt-20 overflow-hidden">
                                 {/* Angled corners using pseudo divs */}
                                 <div className="relative bg-blue-950 p-8 text-white shadow-xl" style={{ clipPath: 'polygon(20px 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 0% 100%, 0% 20px)' }}>
                                     <h3 className="text-2xl font-bold mb-6 text-white">Request Quote</h3>
@@ -271,13 +220,13 @@ export default function Index() {
             </section>
 
             {/* About Section */}
-            <section className="py-16 bg-gray-100">
+            <section className="py-12 md:py-16 bg-gray-100">
                 <div className="container mx-auto px-4">
-                    <div className="flex flex-col lg:flex-row items-center">
+                    <div className="flex flex-col lg:flex-row items-center gap-10">
 
-                        {/* Image Swiper with increased height */}
-                        <div className="lg:w-6/12 mb-10 lg:mb-0">
-                            <div className="relative w-full h-[500px]"> {/* Increased height here */}
+                        {/* Image Swiper - responsive height */}
+                        <div className="w-full lg:w-6/12">
+                            <div className="relative w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px]">
                                 <Swiper
                                     modules={[Autoplay, EffectFade]}
                                     spaceBetween={0}
@@ -304,23 +253,27 @@ export default function Index() {
                         </div>
 
                         {/* Content */}
-                        <div className="lg:w-6/12 lg:pl-12">
-                            <span className="text-blue-600 font-semibold">Welcome to JSK Enterprises</span>
-                            <h2 className="text-3xl font-bold mb-4 text-black mt-3">Complete Crane Spare Parts Solution</h2>
-                            <p className="mb-6 text-gray-700">
-                                JSK Engineering Company has an established track record of manufacturing and supplying heavy duty cranes to clients all around the globe. Owing to our experience, we have different types of crane spare parts available at all times. With a highly-trained team of service engineers and dealers, we ensure prompt dispatch and servicing in any part of the country or the globe. We also have well-equipped service centers to handle your queries regarding crane spares and services.
+                        <div className="w-full lg:w-6/12 lg:pl-12">
+                            <span className="text-yellow-600 font-semibold block mb-2 text-sm sm:text-base">
+                                Welcome to JSR Engineering Solution
+                            </span>
+                            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-black">
+                                Complete Crane Spare Parts Solution
+                            </h2>
+                            <p className="mb-6 text-gray-700 text-sm sm:text-base">
+                                JSR Engineering Solution Company has an established track record of manufacturing and supplying heavy duty cranes to clients all around the globe. Owing to our experience, we have different types of crane spare parts available at all times. With a highly-trained team of service engineers and dealers, we ensure prompt dispatch and servicing in any part of the country or the globe. We also have well-equipped service centers to handle your queries regarding crane spares and services.
                             </p>
 
-                            <div className="grid md:grid-cols-2 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {stats.map((stat, index) => (
                                     <div
                                         key={index}
-                                        className="bg-gradient-to-r from-blue-100 to-blue-200 p-6 rounded-lg shadow text-center hover:shadow-lg transition-shadow"
+                                        className="bg-gradient-to-r from-blue-500 to-blue-300 p-6 rounded-lg shadow text-center hover:shadow-lg transition-shadow"
                                     >
-                                        <span className="text-3xl font-bold text-blue-600 block mb-2">
+                                        <span className="text-4xl sm:text-3xl font-bold text-yellow-500 block mb-2">
                                             <AnimatedCounter target={stat.value} duration={2000} />
                                         </span>
-                                        <span className="text-gray-700">{stat.label}</span>
+                                        <span className="text-white font-bold text-xl sm:text-base">{stat.label}</span>
                                     </div>
                                 ))}
                             </div>
@@ -330,53 +283,40 @@ export default function Index() {
                 </div>
             </section>
 
-
-
-
             {/* Call to Action Section */}
             <section
-                className="py-20 bg-cover bg-center bg-fixed text-white text-center"
+                className="py-20 bg-cover bg-center bg-scroll text-white text-center"
                 style={{
                     backgroundImage:
                         "linear-gradient(rgba(100, 149, 237, 0.65), rgba(100, 149, 237, 0.65)), url('/img/wallpaper2.jpg')"
                 }}
             >
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto md:px-4 px-2">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                        JSK Enterprises a Material Handling Equipments Spare Parts Solutions
+                        JSR Engineering Solution a Material Handling Equipments Spare Parts Solutions
                     </h2>
                     <p className="text-xl mb-8 max-w-3xl mx-auto">
                         The Company has emerged as an industry leader in both technological and product advancements contributing to its long-standing reputation as a manufacturer of high quality Material Lifting Equipments.
                     </p>
-                    <Button
-                        type="primary"
-                        size="large"
-                        className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
+                    <a
+                        href="/pdf/OUR_COMPANY_CATALOG.pdf"
+                        download
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
-                        Download Our Catalog
-                    </Button>
+                        <Button
+                            type="primary"
+                            size="large"
+                            className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
+                        >
+                            Download Our Catalog
+                        </Button>
+                    </a>
+
                 </div>
             </section>
 
-            <section className="py-16 bg-gray-100 text-center">
-                <h2 className="text-3xl font-bold mb-8 text-blue-600">Our Clients</h2>
-                <div className="overflow-hidden">
-                    <Marquee gradient={false} speed={50} pauseOnHover={true}>
-                        {clients.map((logo, index) => (
-                            <div key={index} className="mx-6">
-                                <Image
-                                    src={`/img/logo.jpg`}
-                                    alt={`Client ${index + 1}`}
-                                    width={150}
-                                    height={80}
-                                    className="h-auto w-auto object-contain hover:scale-105 transition-transform duration-300"
-                                />
-                            </div>
-                        ))}
-                    </Marquee>
-                </div>
-            </section>
-
+            <ClientsPage />
         </div>
     );
 };

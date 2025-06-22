@@ -42,22 +42,21 @@ const Footer = () => {
                 <h2 className="ftco-heading-2 logo flex items-center">
                   <Link href="/" className="flex items-center">
                     <Image
-                      src="/assets/images/products/logo.jpg"
+                      src="/logo.webp"
                       width={50}
                       height={50}
-                      alt="JSK Enterprises Logo"
+                      alt="JSR Engineering Solution Logo"
                       className="logo-img mr-3"
                     />
                     <span className="flex flex-col">
-                      <span className="font-bold text-xl" style={{ fontFamily: "'Big Shoulders Stencil Text', cursive" }}>
-                        JSK Enterprises
+                      <span className="font-bold text-xl mb-3" style={{ fontFamily: "'Big Shoulders Stencil Text', cursive" }}>
+                        JSR Engineering Solution
                       </span>
                       <span
                         className="text-sm lowercase"
                         style={{
                           fontFamily: "'Dancing Script', cursive",
                           marginTop: '-0.75rem',
-                          marginLeft: '4.375rem'
                         }}
                       >
                         Tower Crane Spare Parts
@@ -95,8 +94,8 @@ const Footer = () => {
                   {[
                     { href: "/", text: "Home" },
                     { href: "/about", text: "About Us" },
-                    { href: "/products-services", text: "Products & Services" },
-                    { href: "/corporate-video", text: "Corporate Video" },
+                    { href: "/services", text: "Products & Services" },
+                    { href: "/corporatevideo", text: "Corporate Video" },
                     { href: "/gallery", text: "Gallery" },
                     { href: "/contact", text: "Contact Us" }
                   ].map((link, index) => (
@@ -151,28 +150,23 @@ const Footer = () => {
                   <div className="flex items-start">
                     <FaMapMarker className="mt-1 mr-3 text-gray-400 flex-shrink-0" />
                     <span className="text-gray-400">
-                      Plot No. 80, Block C, Sector-3, Greater Noida, Gautam Budh Nagar, Uttar Pradesh (India)
+                      Plot No. 80, Block C, Sector-3, Greter Noida, Gautam
+                      Budh Nagar, Uttar Pradesh (India)
                     </span>
                   </div>
                   <div className="flex items-center">
                     <FaPhone className="mr-3 text-gray-400" />
                     <a href="tel:+918920377345" className="text-gray-400 hover:text-blue-500 transition-colors">
-                      +91-8920377345
+                      +91-83685661339
                     </a>
                   </div>
                   <div className="text-gray-400">
-                    GSTIN: 09BWNPN6295E1ZW
+                    GSTIN: 09NHKPS0590B1ZX
                   </div>
                   <div className="flex items-center">
                     <FaEnvelope className="mr-3 text-gray-400" />
-                    <a href="mailto:sales@towercranespare.com" className="text-gray-400 hover:text-blue-500 transition-colors">
-                      sales@towercranespare.com
-                    </a>
-                  </div>
-                  <div className="flex items-center">
-                    <FaEnvelope className="mr-3 text-gray-400" />
-                    <a href="mailto:ns05deepu@gmail.com" className="text-gray-400 hover:text-blue-500 transition-colors">
-                      ns05deepu@gmail.com
+                    <a href="mailto:jsrengineeringsolution@gmail.com" className="text-gray-400 hover:text-blue-500 transition-colors">
+                      jsrengineeringsolution@gmail.com
                     </a>
                   </div>
                 </div>
@@ -182,10 +176,12 @@ const Footer = () => {
         </div>
 
         {/* Copyright Section */}
-        <div className="bg-gray-950 mt-8 px-20">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="text-center md:text-left mb-4 md:mb-0">
+        <div className="bg-gray-950 mt-8 px-4 md:px-20">
+          <div className="container mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+
+              {/* Left content - always left aligned */}
+              <div className="text-left mb-4 md:mb-0">
                 <p className="text-white">
                   Copyright &copy; {new Date().getFullYear()} Design & Developed{' '}
                   <FaHeart className="inline text-red-300" /> by{' '}
@@ -195,22 +191,25 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Ayanshtech
+                    Prwebtechno
                   </a>
                   <br />
                   <FaPhone className="inline mr-1" />{' '}
                   <a href="tel:+917532046950" className="text-white hover:text-yellow-200 transition-colors">
-                    +91-7532046950
+                    +91-9170475552
                   </a>
                 </p>
               </div>
-              <div className="text-center md:text-right">
-                {/* Google Translate Widget */}
+
+              {/* Right content - Google Translate widget */}
+              <div className="text-left md:text-right w-full md:w-auto">
                 <div id="google_translate_element" className="inline-block"></div>
               </div>
+
             </div>
           </div>
         </div>
+
       </footer>
     </>
   );
