@@ -45,8 +45,8 @@ export default function Index() {
     ];
 
     const images = [
-        '/img/bar_cutting_machine.jpg',
-        '/img/solar_warning_light.jpg',
+        '/images/products/bar_cutting_machine.jpg',
+        '/images/products/solar_warning_light.jpg',
     ];
 
 
@@ -71,7 +71,7 @@ export default function Index() {
     return (
         <div className="min-h-screen">
             <HomeBannerPage
-                bgImage="/images/wall1.jpg"
+                bgImage="/images/banners/wall1.jpg"
                 title={
                     <>
                         WE ARE MANUFECTURER & TRADER OF <br />

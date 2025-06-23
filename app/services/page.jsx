@@ -70,7 +70,7 @@ export default function ProductsPage() {
         <div className="bg-gray-100">
 
             <HomeBannerPage
-                bgImage="/images/wallpaper3.jpg"
+                bgImage="/images/banners/wallpaper3.jpg"
                 title={
                     <>
                         WE ARE MANUFACTURER & TRADER OF <br />

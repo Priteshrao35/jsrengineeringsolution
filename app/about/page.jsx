@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import ClientsPage from '../home/clients';
 import HomeBannerPage from '../home/hombannerpage';
@@ -158,7 +158,7 @@ export default function AboutUs() {
             ],
             media: {
                 type: "image",
-                src: "/img/dgeot.jpg",
+                src: "/images/products/dgeot.jpg",
                 alt: "Engineering Excellence",
                 caption: "Innovative solutions for modern challenges"
             },
@@ -189,7 +189,7 @@ export default function AboutUs() {
     return (
         <div className="min-h-screen overflow-x-hidden bg-gray-50">
             <HomeBannerPage
-                bgImage="/images/wall2.jpg"
+                bgImage="/images/banners/wall2.jpg"
                 title={
                     <>
                         WE ARE MANUFACTURER & TRADER OF <br />

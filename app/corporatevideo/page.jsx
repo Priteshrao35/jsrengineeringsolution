@@ -50,7 +50,7 @@ export default function CarporateVideos() {
     return (
         <div className="bg-gray-100">
             <HomeBannerPage
-                bgImage="/images/wall6.jpg"
+                bgImage="/images/banners/wall6.jpg"
                 title={
                     <>
                         WE ARE MANUFACTURER & TRADER OF <br />

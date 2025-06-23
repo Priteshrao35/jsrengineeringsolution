@@ -156,7 +156,7 @@ const Footer = () => {
                   </div>
                   <div className="flex items-center">
                     <FaPhone className="mr-3 text-gray-400" />
-                    <a href="tel:+918920377345" className="text-gray-400 hover:text-blue-500 transition-colors">
+                    <a href="tel:+9183685661339" className="text-gray-400 hover:text-blue-500 transition-colors">
                       +91-83685661339
                     </a>
                   </div>
@@ -186,7 +186,7 @@ const Footer = () => {
                   Copyright &copy; {new Date().getFullYear()} Design & Developed{' '}
                   <FaHeart className="inline text-red-300" /> by{' '}
                   <a
-                    href="https://ayanshtech.in/"
+                    href="https://www.prwebtechno.com/"
                     className="text-white hover:text-yellow-200 transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -195,7 +195,7 @@ const Footer = () => {
                   </a>
                   <br />
                   <FaPhone className="inline mr-1" />{' '}
-                  <a href="tel:+917532046950" className="text-white hover:text-yellow-200 transition-colors">
+                  <a href="tel:+919170475552" className="text-white hover:text-yellow-200 transition-colors">
                     +91-9170475552
                   </a>
                 </p>

@@ -85,7 +85,7 @@ export default function Gallery() {
     return (
         <div className="bg-gray-50">
             <HomeBannerPage
-                bgImage="/images/wallpaper4.jpg"
+                bgImage="/images/banners/wallpaper4.jpg"
                 title={
                     <>
                         WE ARE MANUFACTURER & TRADER OF <br />
@@ -116,13 +116,13 @@ export default function Gallery() {
 
                     {/* Category Filter */}
                     <div className="flex flex-wrap justify-center gap-3 mb-12">
-                        <button className="px-4 py-2 bg-yellow-500 text-white rounded-full font-medium hover:bg-yellow-600 transition-all">
+                        <button className="md:px-4 md:py-2 bg-yellow-500 text-white rounded-full font-medium hover:bg-yellow-600 transition-all">
                             All Products
                         </button>
                         {categories.map((category, index) => (
                             <button
                                 key={index}
-                                className="px-4 py-2 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 border border-gray-200 transition-all"
+                                className="md:px-4 md:py-2 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 border border-gray-200 transition-all"
                             >
                                 {category}
                             </button>
@@ -148,7 +148,7 @@ export default function Gallery() {
                                         height={500}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                         onError={(e) => {
-                                            e.currentTarget.src = '/images/placeholder.jpg';
+                                            e.currentTarget.src = '/images/banners/placeholder.jpg';
                                         }}
                                     />
                                 </div>

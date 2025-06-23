@@ -67,7 +67,7 @@ export default function ContactUs() {
     return (
         <div className="bg-gray-50">
             <HomeBannerPage
-                bgImage="/images/wall3.webp"
+                bgImage="/images/banners/wall3.webp"
                 title={
                     <>
                         WE ARE MANUFACTURER & TRADER OF <br />
