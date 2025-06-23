@@ -4,14 +4,14 @@ import Marquee from 'react-fast-marquee';
 
 
 const clients = [
-    "/images/client/modernindiaconstruction.jpg",
-    "/images/client/bhutani.png",
-    "/images/client/antriksh.png",
-    "/images/client/bansalgroup.png",
-    "/images/client/ats.png",
-    "/images/client/acecity-logo.png",
-    "/images/client/ctc.png",
-    "/images/client/capacite.png",
+    "/images/clients/modernindiaconstruction.jpg",
+    "/images/clients/bhutani.png",
+    "/images/clients/antriksh.png",
+    "/images/clients/bansalgroup.png",
+    "/images/clients/ats.png",
+    "/images/clients/acecity-logo.png",
+    "/images/clients/ctc.png",
+    "/images/clients/capacite.png",
 ];
 
 export default function ClientsPage() {
