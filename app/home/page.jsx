@@ -299,7 +299,7 @@ export default function Index() {
                         The Company has emerged as an industry leader in both technological and product advancements contributing to its long-standing reputation as a manufacturer of high quality Material Lifting Equipments.
                     </p>
                     <a
-                        href="/pdf/OUR_COMPANY_CATALOG.pdf"
+                        href="/pdf/JSR.pdf"
                         download
                         target="_blank"
                         rel="noopener noreferrer"
