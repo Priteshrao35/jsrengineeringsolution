@@ -3,13 +3,16 @@ import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { MenuOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Modal } from 'antd';
+import { Button, Form, Input, Modal, message } from 'antd';
 import HeaderSection from './headersection';
+
+const { TextArea } = Input;
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showQuoteForm, setShowQuoteForm] = useState(false);
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
   const pathname = usePathname();
 
   const toggleMenu = () => {
@@ -20,16 +23,46 @@ const Navigation = () => {
     setShowQuoteForm(!showQuoteForm);
   };
 
-  const handleSubmit = (values) => {
-    console.log('Form values:', values);
-    form.resetFields();
-    setShowQuoteForm(false);
+  const handleSubmit = async (values) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${window.location.origin}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      if (data.success) {
+        message.success(data.message);
+        form.resetFields();
+        // Close the modal after 2 seconds
+        setTimeout(() => {
+          setShowQuoteForm(false);
+        }, 2000);
+      } else {
+        message.error(data.message || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      message.error(error.message || 'Failed to send message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const getNavClass = (path) =>
-    `nav-link px-4 py-2 rounded-md transition-all duration-300 font-medium ${pathname === path
-      ? 'bg-yellow-500 text-gray-900'
-      : 'text-white hover:bg-blue-700'
+    `nav-link px-4 py-2 rounded-md transition-all duration-300 font-medium ${
+      pathname === path
+        ? 'bg-yellow-500 text-gray-900'
+        : 'text-white hover:bg-blue-700'
     }`;
 
   return (
@@ -50,9 +83,7 @@ const Navigation = () => {
               >
                 <span className="text-white ml-2">Menu</span>
               </Button>
-
             </div>
-
 
             {/* Desktop Navigation */}
             <div className="hidden w-full md:flex items-center justify-center gap-4">
@@ -189,6 +220,17 @@ const Navigation = () => {
             <Input placeholder="Enter your mobile number" size="large" />
           </Form.Item>
 
+          <Form.Item
+            name="message"
+            label="Your Message"
+          >
+            <TextArea 
+              placeholder="Enter your message (optional)" 
+              rows={4} 
+              size="large"
+            />
+          </Form.Item>
+
           <Form.Item>
             <Button
               type="primary"
@@ -196,6 +238,7 @@ const Navigation = () => {
               block
               size="large"
               className="bg-blue-600 hover:bg-blue-700"
+              loading={loading}
             >
               Send Message
             </Button>

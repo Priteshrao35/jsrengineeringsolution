@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "./home/navigationbar";
 import Footer from "./home/footersection";
+import FloatingButtons from "./home/whatsapp";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
         <Navigation />
         {children}
         <Footer />
+        <FloatingButtons />
       </body>
     </html>
   );

@@ -1,12 +1,44 @@
 'use client';
-import { Modal, Form, Input, Button } from 'antd';
+import { useState } from 'react';
+import { Modal, Form, Input, Button, message } from 'antd';
+const { TextArea } = Input;
 
-export default function QuoteFormModal({ visible, onClose, onFinish }) {
+export default function QuoteFormModal({ visible, onClose }) {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (values) => {
-    onFinish(values);
-    form.resetFields();
+  const handleSubmit = async (values) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${window.location.origin}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || `HTTP error! status: ${response.status}`);
+      }
+
+      // Success case
+      message.success(data.message || 'Message sent successfully!');
+      form.resetFields();
+      
+      // Close modal after a delay
+      setTimeout(() => {
+        onClose();
+      }, 2000);
+
+    } catch (error) {
+      console.error('Submission error:', error);
+      message.error(error.message || 'Failed to send message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -16,6 +48,13 @@ export default function QuoteFormModal({ visible, onClose, onFinish }) {
       footer={null}
       centered
       className="rounded-lg"
+      styles={{
+        content: {
+          padding: '24px',
+        },
+      }}
+      // Prevent closing when clicking mask if loading
+      maskClosable={!loading}
     >
       <Form
         form={form}
@@ -58,6 +97,17 @@ export default function QuoteFormModal({ visible, onClose, onFinish }) {
           <Input placeholder="Enter your mobile number" size="large" />
         </Form.Item>
 
+        <Form.Item
+          name="message"
+          label="Your Message"
+        >
+          <TextArea
+            placeholder="Enter your message (optional)"
+            rows={4}
+            size="large"
+          />
+        </Form.Item>
+
         <Form.Item>
           <Button
             type="primary"
@@ -65,6 +115,7 @@ export default function QuoteFormModal({ visible, onClose, onFinish }) {
             block
             size="large"
             className="bg-blue-600 hover:bg-blue-700"
+            loading={loading}
           >
             Send Message
           </Button>

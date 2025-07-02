@@ -4,7 +4,7 @@ import HomeBannerPage from '../home/hombannerpage';
 import ProductRotator from '../home/ProductRotator';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaPaperPlane } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPhone, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { FiSend } from 'react-icons/fi';
 
 export default function ContactUs() {
@@ -16,23 +16,54 @@ export default function ContactUs() {
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState({
+        show: false,
+        success: false,
+        message: ''
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmitStatus({ show: false, success: false, message: '' });
 
-        // Simulate API call
-        setTimeout(() => {
-            console.log("Form submitted:", formData);
-            alert("Thank you for contacting us! We'll get back to you soon.");
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Failed to send message');
+            }
+
+            setSubmitStatus({
+                show: true,
+                success: true,
+                message: data.message || 'Message sent successfully!'
+            });
             setFormData({ name: '', email: '', phone: '', message: '' });
+
+        } catch (error) {
+            console.error('Submission error:', error);
+            setSubmitStatus({
+                show: true,
+                success: false,
+                message: error.message || 'Failed to send message. Please try again.'
+            });
+        } finally {
             setIsSubmitting(false);
-        }, 1500);
+        }
     };
 
     const serviceProducts = [
@@ -66,6 +97,7 @@ export default function ContactUs() {
 
     return (
         <div className="bg-gray-50">
+
             <HomeBannerPage
                 bgImage="/images/banners/wall3.webp"
                 title={
@@ -183,11 +215,11 @@ export default function ContactUs() {
                                         type="text"
                                         id="name"
                                         name="name"
-                                        placeholder="John Doe"
+                                        placeholder="Enter Your Name"
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition"
+                                        className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition placeholder-gray-300"
                                     />
                                 </div>
 
@@ -197,11 +229,11 @@ export default function ContactUs() {
                                         type="email"
                                         id="email"
                                         name="email"
-                                        placeholder="john@example.com"
+                                        placeholder="example@example.com"
                                         value={formData.email}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition"
+                                        className="placeholder-gray-300 text-black w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition"
                                     />
                                 </div>
 
@@ -211,11 +243,11 @@ export default function ContactUs() {
                                         type="tel"
                                         id="phone"
                                         name="phone"
-                                        placeholder="+91 9876543210"
+                                        placeholder="+91 9170475552"
                                         value={formData.phone}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition"
+                                        className="placeholder-gray-300 text-black w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition"
                                     />
                                 </div>
 
@@ -229,7 +261,7 @@ export default function ContactUs() {
                                         onChange={handleChange}
                                         rows={5}
                                         required
-                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition"
+                                        className="placeholder-gray-300 text-black w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none transition"
                                     ></textarea>
                                 </div>
 
@@ -249,6 +281,20 @@ export default function ContactUs() {
                                         </>
                                     )}
                                 </motion.button>
+                                {submitStatus.show && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className={`p-3 rounded-lg flex items-center gap-3 ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
+                                    >
+                                        {submitStatus.success ? (
+                                            <FaCheckCircle className="text-green-500 text-xl" />
+                                        ) : (
+                                            <FaTimesCircle className="text-red-500 text-xl" />
+                                        )}
+                                        <span>{submitStatus.message}</span>
+                                    </motion.div>
+                                )}
                             </form>
                         </motion.div>
                     </motion.div>

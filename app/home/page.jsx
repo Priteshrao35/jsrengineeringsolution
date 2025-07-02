@@ -1,6 +1,6 @@
 'use client'
-import { useEffect, useRef } from 'react';
-import { Button } from 'antd';
+import { useEffect, useState, useRef } from 'react';
+import { Button, message } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css';
@@ -9,8 +9,6 @@ import Image from 'next/image';
 import ClientsPage from './clients';
 import HomeBannerPage from './hombannerpage';
 import ProductRotator from './ProductRotator';
-
-
 
 const AnimatedCounter = ({ target, duration = 2000 }) => {
     const countRef = useRef(null);
@@ -36,6 +34,46 @@ const AnimatedCounter = ({ target, duration = 2000 }) => {
 };
 
 export default function Index() {
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setFormSubmitted(false);
+
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                e.target.reset();
+                setFormSubmitted(true);
+                message.success('Form submitted successfully!');
+
+                setTimeout(() => {
+                    setFormSubmitted(false);
+                }, 3000);
+            } else {
+                message.error(result.message || 'Failed to submit form');
+            }
+        } catch (error) {
+            message.error('Failed to submit form. Please try again.');
+            console.error('Submission error:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     const stats = [
         { value: 2, label: 'Years of Experience' },
@@ -48,7 +86,6 @@ export default function Index() {
         '/images/products/bar_cutting_machine.jpg',
         '/images/products/solar_warning_light.jpg',
     ];
-
 
     const homeProducts = [
         'SOLAR WARNING LAMP',
@@ -66,6 +103,27 @@ export default function Index() {
         'RACK & PINION',
         'SAFETY DEVICES',
         'REED SENSOR'
+    ];
+
+    const productOptions = [
+        'Solar Warning Lamp',
+        'Transformar',
+        'High Tensile Mast Bolt',
+        'Mast Section',
+        'Foundation Legs',
+        'Anchoring Set',
+        'Control Panel',
+        'Concrete Bucket',
+        'Joystick Cable',
+        'Tower Crane Main Cable',
+        'Brake Coil',
+        'Master Control Joystick',
+        'Door Limit Switch',
+        'Rack Limit Switch',
+        '3 Phase Limit Switch',
+        'Safety Device',
+        'Pinion Roller',
+        'Rack & Pinion'
     ];
 
     return (
@@ -142,12 +200,12 @@ export default function Index() {
 
                         <div className="lg:w-4/12 relative">
                             <div className="relative z-20 mt-5 md:-mt-20 overflow-hidden">
-                                {/* Angled corners using pseudo divs */}
                                 <div className="relative bg-blue-950 p-8 text-white shadow-xl" style={{ clipPath: 'polygon(20px 0%, calc(100% - 20px) 0%, 100% 20px, 100% 100%, 0% 100%, 0% 20px)' }}>
                                     <h3 className="text-2xl font-bold mb-6 text-white">Request Quote</h3>
-                                    <form className="space-y-4">
+                                    <form className="space-y-4" onSubmit={handleFormSubmit}>
                                         <div>
                                             <input
+                                                name="name"
                                                 type="text"
                                                 className="w-full p-3 border border-gray-300 rounded bg-transparent text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                 placeholder="Name"
@@ -156,6 +214,7 @@ export default function Index() {
                                         </div>
                                         <div>
                                             <input
+                                                name="email"
                                                 type="email"
                                                 className="w-full p-3 border border-gray-300 rounded bg-transparent text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                 placeholder="Email Address"
@@ -164,6 +223,7 @@ export default function Index() {
                                         </div>
                                         <div>
                                             <input
+                                                name="phone"
                                                 type="tel"
                                                 className="w-full p-3 border border-gray-300 rounded bg-transparent text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                 placeholder="Phone Number"
@@ -172,44 +232,37 @@ export default function Index() {
                                         </div>
                                         <div>
                                             <select
+                                                name="product"
                                                 className="w-full p-3 border border-gray-300 rounded bg-transparent text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                 required
                                             >
                                                 <option value="">Select Your Products</option>
-                                                <option value="Solar Warning Lamp">Solar Warning Lamp</option>
-                                                <option value="Transformar">Transformar</option>
-                                                <option value="High Tensile Mast Bolt">High Tensile Mast Bolt</option>
-                                                <option value="Mast Section">Mast Section</option>
-                                                <option value="Foundation Legs">Foundation Legs</option>
-                                                <option value="Anchoring Set">Anchoring Set</option>
-                                                <option value="Control Panel">Control Panel</option>
-                                                <option value="Concrete Bucket">Concrete Bucket</option>
-                                                <option value="Joystick Cable">Joystick Cable</option>
-                                                <option value="Tower Crane Main Cable">Tower Crane Main Cable</option>
-                                                <option value="Brake Coil">Brake Coil</option>
-                                                <option value="Master Control Joystick">Master Control Joystick</option>
-                                                <option value="Door Limit Switch">Door Limit Switch</option>
-                                                <option value="Rack Limit Switch">Rack Limit Switch</option>
-                                                <option value="3 Phase Limit Switch">3 Phase Limit Switch</option>
-                                                <option value="Safety Device">Safety Device</option>
-                                                <option value="Pinion Roller">Pinion Roller</option>
-                                                <option value="Rack & Pinion">Rack & Pinion</option>
+                                                {productOptions.map((product, index) => (
+                                                    <option key={index} value={product}>{product}</option>
+                                                ))}
                                             </select>
                                         </div>
                                         <div>
                                             <textarea
+                                                name="message"
                                                 className="w-full p-3 border border-gray-300 rounded bg-transparent text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                                 rows="4"
                                                 placeholder="Message"
-                                                required
                                             ></textarea>
                                         </div>
                                         <button
                                             type="submit"
                                             className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-4 rounded transition duration-300"
+                                            disabled={isSubmitting}
                                         >
-                                            Submit
+                                            {isSubmitting ? 'Sending...' : 'Submit'}
                                         </button>
+
+                                        {formSubmitted && (
+                                            <div className="mt-4 p-3 bg-green-500 text-white rounded text-center animate-fade">
+                                                Thank you! Your request has been submitted successfully.
+                                            </div>
+                                        )}
                                     </form>
                                 </div>
                             </div>
