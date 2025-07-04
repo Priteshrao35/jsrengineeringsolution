@@ -148,16 +148,22 @@ const Footer = () => {
                 <h2 className="ftco-heading-2 text-xl font-bold mb-4 text-white">Have a Questions?</h2>
                 <div className="space-y-3">
                   <div className="flex items-start">
-                    <FaMapMarker className="mt-1 mr-3 text-gray-400 flex-shrink-0" />
-                    <span className="text-gray-400">
-                      Plot No. 80, Block C, Sector-3, Greter Noida, Gautam
-                      Budh Nagar, Uttar Pradesh (India)
-                    </span>
+                    <a
+                      href="https://maps.app.goo.gl/JapdLRmj7Z3UJRhH8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-xs md:text-sm font-semibold underline mb-1"
+                    >
+                      <span className="text-gray-400">
+                        Plot No. 80, Block C, Sector-3, Greter Noida, Gautam
+                        Budh Nagar, Uttar Pradesh (India)
+                      </span>
+                    </a>
                   </div>
                   <div className="flex items-center">
                     <FaPhone className="mr-3 text-gray-400" />
-                    <a href="tel:+9183685661339" className="text-gray-400 hover:text-blue-500 transition-colors">
-                      +91-83685661339
+                    <a href="tel:+91 8368661339" className="text-gray-400 hover:text-blue-500 transition-colors">
+                      +91-8368661339
                     </a>
                   </div>
                   <div className="text-gray-400">
@@ -210,7 +216,7 @@ const Footer = () => {
           </div>
         </div>
 
-      </footer>
+      </footer >
     </>
   );
 };

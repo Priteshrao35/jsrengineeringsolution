@@ -10,7 +10,6 @@ const HeaderSection = () => {
     <div className="py-3 bg-white text-gray-800 shadow-md border-b">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-start md:items-center gap-4 md:flex-row md:justify-center md:gap-12">
-          {/* Logo Section with Framer Motion - Left aligned on mobile */}
           <div className="flex items-center w-full md:w-auto">
             <Link
               href="/"
@@ -59,7 +58,9 @@ const HeaderSection = () => {
               </div>
               <div className="text-left">
                 <p className="text-xs md:text-sm font-semibold text-yellow-500">Call Us</p>
-                <p className="text-black font-bold text-sm md:text-base">+91 83685661339</p>
+                <a href="tel:+918368661339" className="text-black font-bold text-sm md:text-base">
+                  +91 8368661339
+                </a>
               </div>
             </div>
 
@@ -68,10 +69,22 @@ const HeaderSection = () => {
 
             <div className="flex items-center">
               <div className="text-left">
-                <p className="text-xs md:text-sm font-semibold">REG. OFICE ADDRESS & Work</p>
-                <p className="text-gray-600 text-xs">Plot No. 80, Block C, Sector-3, Greter Noida, Gautam <br />Budh Nagar, Uttar Pradesh (India)</p>
+                <a
+                  href="https://maps.app.goo.gl/JapdLRmj7Z3UJRhH8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-xs md:text-sm font-semibold underline mb-1"
+                >
+
+                  <p className="text-xs md:text-sm font-semibold">REG. OFFICE ADDRESS & Work</p>
+                  <p className="text-gray-600 text-xs">
+                    Plot No. 80, Block C, Sector-3, Greater Noida, Gautam <br />
+                    Budh Nagar, Uttar Pradesh (India)
+                  </p>
+                </a>
               </div>
             </div>
+
           </div>
         </div>
       </div>

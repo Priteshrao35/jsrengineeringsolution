@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { Button, message } from 'antd';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade } from 'swiper/modules';
+import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Image from 'next/image';
@@ -273,20 +273,27 @@ export default function Index() {
             </section>
 
             {/* About Section */}
-            <section className="py-12 md:py-16 bg-gray-100">
+            <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
                 <div className="container mx-auto px-4">
-                    <div className="flex flex-col lg:flex-row items-center gap-10">
-
-                        {/* Image Swiper - responsive height */}
-                        <div className="w-full lg:w-6/12">
-                            <div className="relative w-full h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px]">
+                    <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+                        {/* Image Swiper with enhanced styling */}
+                        <div className="w-full lg:w-6/12 relative group">
+                            <div className="relative w-full h-[280px] sm:h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden rounded-xl shadow-xl">
                                 <Swiper
-                                    modules={[Autoplay, EffectFade]}
+                                    modules={[Autoplay, EffectFade, Pagination]}
                                     spaceBetween={0}
                                     slidesPerView={1}
-                                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                                    autoplay={{
+                                        delay: 3500,
+                                        disableOnInteraction: false,
+                                        pauseOnMouseEnter: true
+                                    }}
                                     effect="fade"
                                     loop={true}
+                                    pagination={{
+                                        clickable: true,
+                                        dynamicBullets: true
+                                    }}
                                     className="w-full h-full"
                                 >
                                     {images.map((img, index) => (
@@ -294,44 +301,60 @@ export default function Index() {
                                             <Image
                                                 src={img}
                                                 alt={`Slide ${index + 1}`}
-                                                className="w-full h-full object-cover"
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                                 loading="lazy"
-                                                height={500}
-                                                width={800}
+                                                height={600}
+                                                width={900}
+                                                quality={90}
                                             />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>
                             </div>
                         </div>
 
-                        {/* Content */}
-                        <div className="w-full lg:w-6/12 lg:pl-12">
-                            <span className="text-yellow-600 font-semibold block mb-2 text-sm sm:text-base">
-                                Welcome to JSR Engineering Solution
+                        {/* Content with enhanced styling */}
+                        <div className="w-full lg:w-6/12 lg:pl-8">
+                            <span className="inline-block mb-4 px-3 py-1 bg-blue-100 text-blue-700 font-semibold rounded-full text-sm tracking-wider">
+                                YOUR TRUSTED CRANE SOLUTIONS PARTNER
                             </span>
-                            <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-black">
-                                Complete Crane Spare Parts Solution
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-gray-900 leading-tight">
+                                Premium <span className="text-blue-600">Crane Equipment</span> & Spare Parts Provider
                             </h2>
-                            <p className="mb-6 text-gray-700 text-sm sm:text-base">
-                                JSR Engineering Solution Company has an established track record of manufacturing and supplying heavy duty cranes to clients all around the globe. Owing to our experience, we have different types of crane spare parts available at all times. With a highly-trained team of service engineers and dealers, we ensure prompt dispatch and servicing in any part of the country or the globe. We also have well-equipped service centers to handle your queries regarding crane spares and services.
+                            <p className="mb-8 text-gray-700 text-base sm:text-lg leading-relaxed">
+                                JSR Engineering Solution delivers excellence in crane manufacturing, spare parts, and maintenance services. Our team of certified professionals ensures reliable solutions with rapid response times, supported by our extensive inventory of genuine parts and cutting-edge equipment.
                             </p>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {stats.map((stat, index) => (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                {[
+                                    { value: 5, label: "Years of Experience", icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" },
+                                    { value: 50, label: "Qualified Staff Members", icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" },
+                                    { value: 100, label: "Equipment & Spare Parts", icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" },
+                                    { value: 24, label: "Hour Support", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" }
+                                ].map((stat, index) => (
                                     <div
                                         key={index}
-                                        className="bg-gradient-to-r from-blue-500 to-blue-300 p-6 rounded-lg shadow text-center hover:shadow-lg transition-shadow"
+                                        className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-blue-500 hover:-translate-y-1"
                                     >
-                                        <span className="text-4xl sm:text-3xl font-bold text-yellow-500 block mb-2">
-                                            <AnimatedCounter target={stat.value} duration={2000} />
-                                        </span>
-                                        <span className="text-white font-bold text-xl sm:text-base">{stat.label}</span>
+                                        <div className="flex items-center">
+                                            <div className="mr-4 p-3 bg-blue-50 rounded-lg">
+                                                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={stat.icon} />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span className="text-3xl font-bold text-gray-900 block">
+                                                    <AnimatedCounter target={stat.value} duration={2000} />+
+                                                </span>
+                                                <span className="text-gray-600 font-medium">{stat.label}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </section>
@@ -341,7 +364,7 @@ export default function Index() {
                 className="py-20 bg-cover bg-center bg-scroll text-white text-center"
                 style={{
                     backgroundImage:
-                        "linear-gradient(rgba(100, 149, 237, 0.65), rgba(100, 149, 237, 0.65)), url('/img/wallpaper2.jpg')"
+                        "linear-gradient(rgba(100, 149, 237, 0.2), rgba(100, 149, 237, 0.2)), url('/img/wallpaper2.jpg')"
                 }}
             >
                 <div className="container mx-auto md:px-4 px-2">
@@ -365,7 +388,6 @@ export default function Index() {
                             Download Our Catalog
                         </Button>
                     </a>
-
                 </div>
             </section>
 

@@ -136,14 +136,14 @@ export default function ContactUs() {
                         {/* Contact Info */}
                         <motion.div
                             variants={itemVariants}
-                            className="bg-white p-8 rounded-xl shadow-lg border border-gray-100"
+                            className="bg-white rounded-xl shadow-lg border border-gray-100"
                         >
                             <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                                 <span className="w-2 h-8 bg-yellow-500 mr-3"></span>
                                 JSR Engineering Solution
                             </h3>
 
-                            <div className="space-y-6">
+                            <div className="space-y-6 px-8">
                                 <div className="flex items-start">
                                     <div className="bg-yellow-100 p-3 rounded-full mr-4">
                                         <FaMapMarkerAlt className="text-yellow-500 text-xl" />
@@ -177,10 +177,10 @@ export default function ContactUs() {
                                     <div>
                                         <h4 className="font-semibold text-gray-800">Phone Number</h4>
                                         <a
-                                            href="tel:+9183685661339"
+                                            href="tel:+918368661339"
                                             className="text-blue-500 hover:text-blue-600 transition-colors"
                                         >
-                                            +91 83685661339
+                                            +91 8368661339
                                         </a>
                                     </div>
                                 </div>
@@ -190,7 +190,7 @@ export default function ContactUs() {
                             <div className="mt-8 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
                                 <iframe
                                     title="Google Map"
-                                    className="w-full h-64"
+                                    className="w-full h-80"
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7000.390038403116!2d77.30497905982527!3d28.40891268223588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cedf4181e60a9%3A0x8ffb10fa20336f7d!2sFaridabad%2C%20Haryana!5e0!3m2!1sen!2sin!4v1680000000000"
                                     allowFullScreen
                                     loading="lazy"
