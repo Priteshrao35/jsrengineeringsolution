@@ -345,7 +345,7 @@ export default function Index() {
                                             </div>
                                             <div>
                                                 <span className="text-3xl font-bold text-gray-900 block">
-                                                    <AnimatedCounter target={stat.value} duration={2000} />+
+                                                    <AnimatedCounter target={stat.value} duration={2000} />
                                                 </span>
                                                 <span className="text-gray-600 font-medium">{stat.label}</span>
                                             </div>
@@ -364,7 +364,7 @@ export default function Index() {
                 className="py-20 bg-cover bg-center bg-scroll text-white text-center"
                 style={{
                     backgroundImage:
-                        "linear-gradient(rgba(100, 149, 237, 0.2), rgba(100, 149, 237, 0.2)), url('/img/wallpaper2.jpg')"
+                        "linear-gradient(rgba(25, 75, 180, 0.6), rgba(25, 75, 180, 0.6)), url('/images/banners/wallpaper2.jpg')"
                 }}
             >
                 <div className="container mx-auto md:px-4 px-2">
@@ -380,13 +380,11 @@ export default function Index() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Button
-                            type="primary"
-                            size="large"
-                            className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
+                        <button
+                            className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded text-lg"
                         >
                             Download Our Catalog
-                        </Button>
+                        </button>
                     </a>
                 </div>
             </section>

@@ -40,7 +40,7 @@ const HeaderSection = () => {
               <span className="font-bold text-lg md:text-xl text-left">
                 <span className="text-blue-600"></span> Engineering Solution
                 <small className="block font-normal text-yellow-500 text-xs md:text-sm">
-                  Tower Crane Spare Parts Solutions
+                  Construction Equipment Spare Parts Services
                 </small>
               </span>
             </Link>

@@ -59,7 +59,7 @@ const Footer = () => {
                           marginTop: '-0.75rem',
                         }}
                       >
-                        Tower Crane Spare Parts
+                        Construction Equipment Spare Parts Services
                       </span>
                     </span>
                   </Link>
@@ -189,20 +189,14 @@ const Footer = () => {
               {/* Left content - always left aligned */}
               <div className="text-left mb-4 md:mb-0">
                 <p className="text-white">
-                  Copyright &copy; {new Date().getFullYear()} Design & Developed{' '}
-                  <FaHeart className="inline text-red-300" /> by{' '}
+                  Copyright &copy; {new Date().getFullYear()} Design & Developed by{' '}
                   <a
                     href="https://www.prwebtechno.com/"
                     className="text-white hover:text-yellow-200 transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Prwebtechno
-                  </a>
-                  <br />
-                  <FaPhone className="inline mr-1" />{' '}
-                  <a href="tel:+919170475552" className="text-white hover:text-yellow-200 transition-colors">
-                    +91-9170475552
+                    Virtualseoweb
                   </a>
                 </p>
               </div>
