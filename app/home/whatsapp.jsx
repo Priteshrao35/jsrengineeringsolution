@@ -17,7 +17,7 @@ const FloatingButtons = () => {
             </motion.a>
 
             <motion.a
-                href="https://wa.me/8368661339"
+                href="https://wa.me/+918368661339"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-[50px] h-[50px] bg-[#25D366] text-white rounded-full shadow flex items-center justify-center"
